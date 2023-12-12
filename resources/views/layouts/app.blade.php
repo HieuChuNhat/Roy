@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+
+
+    <!-- my file-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/open-iconic-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/ionicons.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datepicker.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/jquery.timepicker.css') }}">
+
+    
+    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/icomoon.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+
+    <!-- Scripts -->
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+</head>
+<body>
+    <div id="app">
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="navbar-nav me-auto">
+
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav ms-auto">
+                        <!-- Authentication Links -->
+                        @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                </li>
+                            @endif
+
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+            </div>
+        </nav> --}}
+
+        <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+            <div class="container">
+              <a class="navbar-brand" href="{{ url('/home') }}">Coffee<small>Roy</small></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="oi oi-menu"></span> Menu
+              </button>
+              <div class="collapse navbar-collapse" id="ftco-nav">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active"><a href="{{ route('home') }}" class="nav-link">Trang chủ</a></li>
+                  <li class="nav-item"><a href="{{ route('products.menu') }}" class="nav-link">Thực đơn</a></li>
+                  <li class="nav-item"><a href="{{ route('services') }}" class="nav-link">Dịch vụ</a></li>
+                  <li class="nav-item"><a href="{{ route('about') }}" class="nav-link">About</a></li>
+                 
+                  <li class="nav-item"><a href="{{ route('contact') }}" class="nav-link">Liên hệ</a></li>
+                  @if (isset(Auth::user()->id))
+                  <li class="nav-item cart"><a href="{{ route('cart') }}" class="nav-link"><span class="icon icon-shopping_cart"></span></a>
+                  @endif
+                  
+                    @guest
+                            @if (Route::has('login'))
+                                <li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Đăng nhập</a></a></li>
+                            @endif
+                            
+                            @if (Route::has('login'))
+                                <li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Đăng kí</a></li>
+                            @endif
+                            @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                  
+                                    <a class="dropdown-item" href="{{ route('users.orders') }}">
+                                        My Orders
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('users.bookings') }}">
+                                      My Bookings
+                                  </a>
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                </div>
+                            </li>
+                        @endguest
+    
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+        <main class="py-4">
+            @yield('content')
+        </main>
+    </div>
+
+    <footer class="ftco-footer ftco-section img">
+    	<div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 ">
+            <div class="ftco-footer-widget mb-4">   
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft ">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 ">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Tin</h2>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url({{ asset('assets/images/image_1.jpg') }});"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="#">RoyCoffee cho ra mắt món mới với hương vị châu âu ...</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> 16/11/2023</a></div>
+                    <div><a href="#"><span class="icon-person"></span> Chí Hiếu</a></div>
+                    <div><a href="#"><span class="icon-chat"></span> 502</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url({{ asset('assets/images/image_2.jpg') }});"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="#">Chương trình khuyến mãi nhân ngày 20/11 ...</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> 20/11/2023</a></div>
+                    <div><a href="#"><span class="icon-person"></span> Hữu Mạnh</a></div>
+                    <div><a href="#"><span class="icon-chat"></span> 276</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 ">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Liên hệ</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">Hoa Phuoc, Hoa Vang, Da Nang, Viet Nam</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">0799305477</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">Roy_coffee@gmail.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div>
+        
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery-migrate-3.0.1.min.js') }}"></script>
+  <script src="{{ asset('assets/js/popper.min.js') }}"></script>
+  <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery.easing.1.3.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery.stellar.min.js') }}"></script>
+  <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery.magnific-popup.min.js') }}"></script>
+  <script src="{{ asset('assets/js/aos.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery.animateNumber.min.js') }}"></script>
+  <script src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>
+  <script src="{{ asset('assets/js/jquery.timepicker.min.js') }}"></script>
+  <script src="{{ asset('assets/js/scrollax.min.js') }}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{{ asset('assets/js/google-map.js') }}"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
+
+  
+</body>
+</html>
